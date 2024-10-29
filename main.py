@@ -20,6 +20,6 @@ async def analyze_comment(comment: Comment):
     results = model.predict(comment.text)
     
     # Convert any numpy.float32 values to Python floats for JSON serialization
-    results = {key: float(value) if isinstance(value, np.float32) else value for key, value in results.items()}
+    results = {key: round(float(value) * 100, 2) if isinstance(value, np.float32) else value for key, value in results.items()}
     
     return results
